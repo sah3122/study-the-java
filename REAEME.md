@@ -47,3 +47,33 @@
             * 최상위 우선순위를 가진 클래스 로더
         * 플랫폼 클래스로더 - JAVA_HOME\lib\ext 폴더 또는 java.ext.dirs 시스템 변수에 해당하는 위치에 있는 클래스를 읽는다.
         * 애플리케이션 클래스로더 - 애플리케이션 클래스패스(애플리케이션 실행할 때 주는 -classpath 옵션 또는 java.class.path 환경 변수의 값에 해당하는 위치)에서클래스를 읽는다.
+* ByteCode 조작
+    * 바이트코드 조작 라이브러리
+        * ASM: https://asm.ow2.io/
+        * Javassist: https://www.javassist.org/
+        * ByteBuddy: https://bytebuddy.net/#/
+    * Javaagent JAR 파일 만들기
+        * https://docs.oracle.com/javase/8/docs/api/java/lang/instrument/package-summary.html
+        * 붙이는 방식은 시작시 붙이는 방식 premain과 런타임 중에 동적으로 붙이는 방식 agentmain이 있다.
+        * Instrumentation을 사용한다.
+    * Javaagent 붙여서 사용하기
+        * 클래스로더가 클래스를 읽어올 때 javaagent를 거쳐서 변경된 바이트코드를 읽어들여 사용한다.
+* 활용 예
+    * 프로그램 분석
+        * 코드에서 버그 찾는 툴
+        * 코드 복잡도 계산
+    * 클래스 파일 생성
+        * 프록시
+        * 특정 API 호출 접근 제한
+        * 스칼라 같은 언어의 컴파일러
+    `그밖에도 자바 소스 코드 건리지 않고 코드 변경이 필요한 여러 경우에 사용할 수 있다.`
+        * 프로파일러 (newrelic)
+        * 최적화
+        * 로깅
+    * 스프링이 컴포넌트 스캔을 하는 방법 (asm)
+        * 컴포넌트 스캔으로 빈으로 등록할 후보 클래스 정보를 찾는데 사용
+        * ClassPathScanningCandidateComponentProvider -> SimpleMetadataReader
+        * ClassReader와 Visitor 사용해서 클래스에 있는 메타 정보를 읽어온다.
+    * 참고
+        * https://www.youtube.com/watch?v=39kdr1mNZ_s
+        * ASM, Javassist, ByteBuddy, CGlib

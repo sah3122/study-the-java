@@ -33,4 +33,6 @@ out/
 
 .DS_Store
 
+target/
+
 logs/**

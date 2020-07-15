@@ -102,3 +102,14 @@
     * 리플렉션
         * getAnnotations() : 상속받은 (@Inherit) 애노테이션까지 조회
         * getDeclaredAnnotations() : 자기 자신에만 붙어있는 애노테이션 조회 
+    * Class 인스턴스 만들기
+        * Class.newInstance()는 deprecated 됐으며 constructor를 사용하여 만들어야 한다.
+    * 생성자로 인스턴스 만들기
+        * Constructor.newInstance(params)
+    * 필드 값 접근하기 / 설정하기
+        * 특정 인스턴스가 가지고 있는 값을 가져오는 것이기 때문에 인스턴스가 필요하다.
+        * Field.get(object)
+        * Field.set(object, value)
+        * Static 필드를 가져올 때는 object가 없어도 되니 null을 넘기면 된다.
+    * 메소드 실행하기
+        * Object.method.invoke(object, params)

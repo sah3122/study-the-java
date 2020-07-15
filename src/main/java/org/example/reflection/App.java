@@ -1,44 +1,35 @@
 package org.example.reflection;
 
-import java.lang.reflect.Modifier;
+import java.lang.reflect.*;
 import java.util.Arrays;
 
 public class App {
-    public static void main(String[] args) throws ClassNotFoundException {
+    public static void main(String[] args) throws ClassNotFoundException, NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException, NoSuchFieldException {
         Class<Book> bookClass = Book.class;
+//        Constructor<Book> constructor = bookClass.getConstructor(null);
+//        Book book = constructor.newInstance();
+//        System.out.println(book);
 
-        Book book = new Book();
-        Class<? extends Book> aClass = book.getClass();
+        Constructor<Book> constructor = bookClass.getConstructor(String.class);
+        Book myBook = constructor.newInstance("myBook");
+        System.out.println(myBook);
 
-        Class<?> aClass1 = Class.forName("org.example.reflection.Book");
+        Field a = Book.class.getDeclaredField("A");
+        System.out.println(a.get(null)); // static한 field라서 object파라미터에 null을 넘겨준다.
 
-        //getFields 는 public 만 가지고 온다.
-        Arrays.stream(bookClass.getFields()).forEach(System.out::println);
+        a.set(null, "AAAA");
+        System.out.println(a.get(null));
 
-        //getDeclaredFields 는 모든 필드에 접근 가능하다.
-        Arrays.stream(bookClass.getDeclaredFields()).forEach(System.out::println);
+        Field b = Book.class.getDeclaredField("B");
+        b.setAccessible(true);
+        System.out.println(b.get(myBook)); // static field가 아니라 객체를 넘겨주어야 한다.
+        b.set(myBook, "BBBBBBBBBB");
 
-        Arrays.stream(bookClass.getDeclaredFields())
-                .forEach(f -> {
-                    try {
-                        f.setAccessible(true);
-                        System.out.printf("%s %s", f, f.get(book)) ;
-                    } catch (IllegalAccessException e) {
-                        e.printStackTrace();
-                    }
-                });
+        Method c = Book.class.getDeclaredMethod("c");
+        c.invoke(myBook); // 메소드 실행
 
-        Arrays.stream(bookClass.getMethods()).forEach(System.out::println);
-
-        Arrays.stream(bookClass.getDeclaredFields())
-                .forEach(f -> {
-                    int modifiers = f.getModifiers();
-                    System.out.println(f);
-                    System.out.println(Modifier.isStatic(modifiers));
-                });
-
-        Arrays.stream(MyBook.class.getDeclaredAnnotations()).forEach(System.out::println); // MyBook에 선언된 애노테이션만 가지고 오는 메소드.
-
-
+        Method sum = Book.class.getDeclaredMethod("sum", int.class, int.class);
+        int invoke = (int) c.invoke(myBook, 1, 2);
+        System.out.println(invoke);
     }
 }

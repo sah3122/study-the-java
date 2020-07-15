@@ -36,5 +36,9 @@ public class App {
                     System.out.println(f);
                     System.out.println(Modifier.isStatic(modifiers));
                 });
+
+        Arrays.stream(MyBook.class.getDeclaredAnnotations()).forEach(System.out::println); // MyBook에 선언된 애노테이션만 가지고 오는 메소드.
+
+
     }
 }

@@ -127,3 +127,10 @@
         * 프록시와 리얼 서브젝트가 공유하는 인터페이스가 있고, 클라이언트는 해당 인터페이스 타입으로 프록시를 사용한다.
         * 클라이언트는 프록시를 거쳐 리얼 서브젝트를 사용하기 때문에 프록시는 리얼 서브젝트에 대한 접근을 관리하거나 부가기능을 제공, 리턴값을 변경할 수 있다. 
         * 리얼 서브젝트는 자신이 해야할 일만 하면서(SRP) 프록시를 사용해 부가적인 기능(접근제한, 로깅, 트랜잭션)을 제공할 때 이런 패턴을 주로 사용한다.
+    * 다이나믹 프록시
+        * 런타임에 특정 인터페이스를 구현하는 클래스 또는 인스턴스를 만드는 기술
+        * 프록시 인스턴스 만들기
+            * ```java
+              BookService bookService = (BookService) Proxy.newProxyInstance(BookService.class.getClassLoader(), new Class[]{BookService.class}, new InvocationHandler(){});
+              ```
+            * 유연한 구조가 아니다.  Spring AOP가 다이나믹 프록시를 Spring에 사용할 수 있게 구현해둠 

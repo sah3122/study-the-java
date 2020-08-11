@@ -8,9 +8,9 @@ public class BookServiceProxy implements BookService {
     }
 
     @Override
-    public void rent(String title) {
+    public void rent(Book book) {
         System.out.println("aaa");
-        bookService.rent(title);
+        bookService.rent(book);
         System.out.println("bbb");
     }
 }

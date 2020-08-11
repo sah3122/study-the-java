@@ -7,7 +7,7 @@ public class Book {
         this.title = title;
     }
 
-    public String getTitle() {
+    public String rent() {
         return title;
     }
 }

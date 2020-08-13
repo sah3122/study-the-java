@@ -134,3 +134,15 @@
               BookService bookService = (BookService) Proxy.newProxyInstance(BookService.class.getClassLoader(), new Class[]{BookService.class}, new InvocationHandler(){});
               ```
             * 유연한 구조가 아니다.  Spring AOP가 다이나믹 프록시를 Spring에 사용할 수 있게 구현해둠 
+    * 인터페이스가 아닌 클래스의 프록시 생성
+        * 서브 클래스를 만들 수 있는 라이브러리를 사용해 프록시를 만들 수 있다.
+        * CGlib
+            * 스프링, 하이버네이트가 사용하는 라이브러리
+            * 버전 호환성이 좋지 않아 서로 다른 라이브러리 내부에 내장된 형태로 제공
+        * ByteBuddy
+            * 바이트 코드 조작 뿐만 아니라 런타임 프록시를 만들때도 사용할 수 있다.
+            * 서브클래스를 만드는 방법의 단점
+                * 상속을 사용하지 못하는 경우 프록시를 만들 수 없다.
+                    * Private 생성자만 있는 경우
+                    * Final 클래스인 경우
+                * 인터페이스가 있을 때는 인터페이스의 프록시를 만들어 사용할 것

@@ -154,3 +154,9 @@
                 * 스프링 AOP
                 * Mockito
                 * 하이버네이트 lazy initialzation
+* 애노테이션 프로세서
+ * Lombok의 동작 원리
+    * @Getter, @Setter, @Builder 등의 애노테이션과 애노테이션 프로세서를 제공하여 표준적으로 작성해야 할 코드를 개발자 대신 생성해주는 라이브러리.
+ * 롬복 동작 원리
+     * 컴파일 시점에 애노테이션 프로세서를 사용하여 소스코드의 AST(abstract syntax tree)를 조작한다.
+ 

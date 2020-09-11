@@ -163,3 +163,13 @@
      * 소스 코드, 클래스 코드 및 리소스를 생성할 수 있는 인터페이스
  * 유틸리티
      * javapoet : 소스 코드 생성 유틸리티
+ * 정리
+     * 애노테이션 프로세서 사용 예
+         * 롬복
+         * AutoService: java.util.ServiceLoader용 파일 생성 유틸리티
+    * @Override
+        * https://stackoverflow.com/questions/18189980/how-do-annotations-like-overridework-internally-in-java/18202623
+ * 애노테이션 프로세서 장점
+    * 런타임 비용이 제로
+ * 애노테이션 프로세서 단점
+    * 기존 클래스 코드를 변경할 때는 약간의 hack이 필요하다.
